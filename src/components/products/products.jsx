@@ -8,15 +8,22 @@ const Products = ({ productsPromise }) => {
   const [card, setCard] = useState(0);
 
   const handelAddCard = () => {
-    console.log("add card to click");
+    // console.log("add card to click");
+    const addCard = card + 1;
+    setCard(addCard);
   };
 
   return (
     <div>
       <h3>All Products is here : {products.length} </h3>
+      <h3>buy products: {card}</h3>
       <div className="cardProduct">
         {products.map((product) => (
-          <Product handelAddCard={handelAddCard} product={product}></Product>
+          <Product
+            key={product.id}
+            handelAddCard={handelAddCard}
+            product={product}
+          ></Product>
         ))}
       </div>
     </div>

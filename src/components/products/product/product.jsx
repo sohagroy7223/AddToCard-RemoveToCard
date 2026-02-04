@@ -1,17 +1,20 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import "./product.css";
 
 const Product = ({ product, handelAddCard }) => {
   //   console.log(product);
 
-  //   const [buy, setBuy]=useState
-
+  const [buy, setBuy] = useState(false);
+  const handleCard = () => {
+    setBuy(!buy);
+    handelAddCard();
+  };
   return (
-    <div className="card">
+    <div className={`card ${buy && "cardBg"}`}>
       <h3>category : {product.category}</h3>
-      <img className="w" src={product.image} alt="" />
+      <img className="w" src={product.image} alt="product" />
       <p>price: {product.price}</p>
-      <button onClick={() => handelAddCard()}>buy</button>
+      <button onClick={handleCard}>{buy ? "cancel" : "buy"}</button>
     </div>
   );
 };
