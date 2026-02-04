@@ -2,3 +2,19 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+.productCard {
+  border: 2px solid purple;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 20px;
+}
+.addToCard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.img {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100px;
+}
