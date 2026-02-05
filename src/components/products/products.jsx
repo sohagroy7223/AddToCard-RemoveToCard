@@ -1,7 +1,11 @@
 import React, { use, useEffect, useState } from "react";
 import Product from "./product/product";
 import "./products.css";
-import { addToStoreCard, getStoreCard } from "../localStore/localStore";
+import {
+  addToStoreCard,
+  getStoreCard,
+  removeCartLs,
+} from "../localStore/localStore";
 import AddCard from "./AddCard";
 const Products = ({ productsPromise }) => {
   const products = use(productsPromise);
@@ -45,6 +49,7 @@ const Products = ({ productsPromise }) => {
     console.log("click for remove", id);
     const remainingCard = addCard.filter((product) => product.id !== id);
     setAddCard(remainingCard);
+    removeCartLs(id);
   };
 
   return (
