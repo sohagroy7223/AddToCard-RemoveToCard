@@ -2,7 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import Product from "./product/product";
 import "./products.css";
 import { addToStoreCard, getStoreCard } from "../localStore/localStore";
-
+import AddCard from "./AddCard";
 const Products = ({ productsPromise }) => {
   const products = use(productsPromise);
 
@@ -41,17 +41,21 @@ const Products = ({ productsPromise }) => {
     setCard(addCard);
   };
 
+  const handleRemoveCard = () => {
+    console.log("click for remove");
+  };
+
   return (
     <div>
       <h3>All Products is here : {products.length} </h3>
       <h3>buy products: {card}</h3>
       <div className="addToCard">
         {addCard.map((product) => (
-          <div key={product.id} className="productCard">
-            <h3>{product.category}</h3>
-            <img className="img" src={product.image} alt="" />
-            <p>${product.price}</p>
-          </div>
+          <AddCard
+            key={product.id}
+            handleRemoveCard={handleRemoveCard}
+            product={product}
+          ></AddCard>
         ))}
       </div>
       <div className="cardProduct">
