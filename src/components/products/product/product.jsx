@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./product.css";
 
-const Product = ({ product, handelAddCard, handleAddCard }) => {
+const Product = ({ product, handelCountCard, handleAddCard }) => {
   //   console.log(product);
 
   const [buy, setBuy] = useState(false);
   const handleCard = () => {
     setBuy(!buy);
-    handelAddCard();
+    handelCountCard();
   };
   return (
     <div className={`card ${buy && "cardBg"}`}>

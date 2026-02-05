@@ -1,5 +1,6 @@
 const getItemToLocalStor = () => {
   const getItemCard = localStorage.getItem("cart");
+
   if (getItemCard) {
     const data = JSON.parse(getItemCard);
     return data;
@@ -20,4 +21,7 @@ const addToLocalStorage = (id) => {
   saveCartToLocalStorage(cart);
 };
 
-export { getItemToLocalStor, addToLocalStorage };
+export {
+  getItemToLocalStor as getStoreCard,
+  addToLocalStorage as addToStoreCard,
+};

@@ -1,22 +1,41 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Product from "./product/product";
 import "./products.css";
+import { addToStoreCard, getStoreCard } from "../localStore/localStore";
 
 const Products = ({ productsPromise }) => {
   const products = use(productsPromise);
 
-  const [card, setCard] = useState(0);
-
   const [addCard, setAddCard] = useState([]);
+
+  useEffect(() => {
+    const storeCardIds = getStoreCard();
+    // console.log(storeCardIds, products);
+
+    const storeCard = [];
+
+    for (const id of storeCardIds) {
+      // console.log(id);
+      const cardProducts = products.find((product) => product.id === id);
+      if (cardProducts) {
+        storeCard.push(cardProducts);
+        setAddCard(...addCard, storeCard);
+      }
+    }
+  }, [products]);
+
+  const [card, setCard] = useState(0);
 
   const handleAddCard = (product) => {
     // console.log("add to card", product);
     const allCard = [...addCard, product];
     // console.log(allCard);
     setAddCard(allCard);
+    // console.log(product.id);
+    addToStoreCard(product.id);
   };
 
-  const handelAddCard = () => {
+  const handelCountCard = () => {
     // console.log("add card to click");
     const addCard = card + 1;
     setCard(addCard);
@@ -40,7 +59,7 @@ const Products = ({ productsPromise }) => {
           <Product
             key={product.id}
             handleAddCard={handleAddCard}
-            handelAddCard={handelAddCard}
+            handelCountCard={handelCountCard}
             product={product}
           ></Product>
         ))}
