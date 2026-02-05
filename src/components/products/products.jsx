@@ -28,9 +28,9 @@ const Products = ({ productsPromise }) => {
       <h3>buy products: {card}</h3>
       <div className="addToCard">
         {addCard.map((product) => (
-          <div className="productCard">
+          <div key={product.id} className="productCard">
             <h3>{product.category}</h3>
-            {<img className="img" src={product.image} alt="" />}
+            <img className="img" src={product.image} alt="" />
             <p>${product.price}</p>
           </div>
         ))}
