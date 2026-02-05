@@ -41,8 +41,10 @@ const Products = ({ productsPromise }) => {
     setCard(addCard);
   };
 
-  const handleRemoveCard = () => {
-    console.log("click for remove");
+  const handleRemoveCard = (id) => {
+    console.log("click for remove", id);
+    const remainingCard = addCard.filter((product) => product.id !== id);
+    setAddCard(remainingCard);
   };
 
   return (
